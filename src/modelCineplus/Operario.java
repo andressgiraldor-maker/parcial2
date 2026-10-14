@@ -3,7 +3,7 @@ package modelCineplus;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Operario {
+public class Operario extends  Persona{
 
     //Atributos de la clase Operario
     private int codigoEmpleado;
@@ -13,7 +13,8 @@ public class Operario {
     //Relaciones de la clase Operario
     private List<Venta> listOperarioVentas;
 
-    public Operario(int codigoEmpleado, double fechaContratacion, double salarioBasico) {
+    public Operario(int documento, String nombre, String correo, int telefono,int codigoEmpleado, double fechaContratacion, double salarioBasico) {
+        super(documento, nombre, correo, telefono);
         this.codigoEmpleado = codigoEmpleado;
         this.fechaContratacion = fechaContratacion;
         this.salarioBasico = salarioBasico;
@@ -54,11 +55,11 @@ public class Operario {
 
     @Override
     public String toString() {
-        return "Operario{" +
-                "codigoEmpleado=" + codigoEmpleado +
-                ", fechaContratacion=" + fechaContratacion +
-                ", salarioBasico=" + salarioBasico +
-                ", listOperarioVentas=" + listOperarioVentas +
+        return "Operario{" + "\n" +
+                "codigoEmpleado=" + codigoEmpleado + "\n" +
+                ", fechaContratacion=" + fechaContratacion + "\n" +
+                ", salarioBasico=" + salarioBasico + "\n" +
+                ", listOperarioVentas=" + listOperarioVentas + "\n" +
                 '}';
     }
 }

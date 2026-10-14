@@ -10,11 +10,11 @@ public class Pelicula {
     public String titulo;
     public double duracionMinutos;
     public int clasificacionEdad;
-    private GeneroPelicula generoPelicula;
+
 
     //Relaciones de la clase Pelicula
-    private Empresa empresa;
     private List<Funcion>  listPeliculaFunciones;
+    private GeneroPelicula generoPelicula;
 
     public Pelicula(int codigo, String titulo, double duracionMinutos, int clasificacionEdad, GeneroPelicula generoPelicula) {
         this.codigo = codigo;
@@ -25,6 +25,7 @@ public class Pelicula {
 
         this.listPeliculaFunciones = new ArrayList<>();
     }
+
 
     public int getCodigo() {
         return codigo;
@@ -66,13 +67,8 @@ public class Pelicula {
         this.generoPelicula = generoPelicula;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
 
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
+
 
     public List<Funcion> getListPeliculaFunciones() {
         return listPeliculaFunciones;
@@ -85,13 +81,12 @@ public class Pelicula {
     @Override
     public String toString() {
         return "Pelicula{" +
-                "codigo=" + codigo +
-                ", titulo='" + titulo + '\'' +
-                ", duracionMinutos=" + duracionMinutos +
-                ", clasificacionEdad=" + clasificacionEdad +
-                ", generoPelicula=" + generoPelicula +
-                ", empresa=" + empresa +
-                ", listPeliculaFunciones=" + listPeliculaFunciones +
+                "codigo=" + codigo + "\n" +
+                ", titulo='" + titulo + "\n" +
+                ", duracionMinutos=" + duracionMinutos + "\n" +
+                ", clasificacionEdad=" + clasificacionEdad + "\n" +
+                ", generoPelicula=" + generoPelicula + "\n" +
+                ", listPeliculaFunciones=" + listPeliculaFunciones + "\n" +
                 '}';
     }
 }

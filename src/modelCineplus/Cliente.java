@@ -10,13 +10,13 @@ public class Cliente extends Persona {
     private double procentajeDescuento;
 
     //Relaciones de la clase Cliente
-    private List<Boleta> listClienteBoleta;
+    private List<Boleta> listClienteBoletas;
 
     public Cliente(int documento, String nombre, String correo, int telefono, int codigoAfiliacion, double procentajeDescuento) {
         super(documento, nombre, correo, telefono);
         this.codigoAfiliacion = codigoAfiliacion;
         this.procentajeDescuento = procentajeDescuento;
-        this.listClienteBoleta = new ArrayList<>();
+        this.listClienteBoletas = new ArrayList<>();
     }
 
     public int getCodigoAfiliacion() {
@@ -36,19 +36,19 @@ public class Cliente extends Persona {
     }
 
     public List<Boleta> getListClienteBoleta() {
-        return listClienteBoleta;
+        return listClienteBoletas;
     }
 
     public void setListClienteBoleta(List<Boleta> listClienteBoleta) {
-        this.listClienteBoleta = listClienteBoleta;
+        this.listClienteBoletas = listClienteBoletas;
     }
 
     @Override
     public String toString() {
         return "Cliente{" +
-                "codigoAfiliacion=" + codigoAfiliacion +
-                ", procentajeDescuento=" + procentajeDescuento +
-                ", listClienteBoleta=" + listClienteBoleta +
+                "codigoAfiliacion=" + codigoAfiliacion + "\n" +
+                ", procentajeDescuento=" + procentajeDescuento + "\n" +
+                ", listClienteBoletas=" + listClienteBoletas + "\n" +
                 '}';
     }
 }

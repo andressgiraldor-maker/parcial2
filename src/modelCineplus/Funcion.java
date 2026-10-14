@@ -12,14 +12,25 @@ public class Funcion {
     public Double precioBoleta;
 
     //Relaciones de la clase Funcion
-    private List<Empresa> listEmpresaFunciones;
+    private List<Boleta> listFuncionBoletas;
+
+
+    /**
+     * metodo constructor de la clase Funcion
+     * @param codigo de la funcion
+     * @param fechaPresentacion de la funcion
+     * @param horaInicio de la funcion
+     * @param precioBoleta de la funcion
+     */
 
     public Funcion(int codigo, String fechaPresentacion, String horaInicio, Double precioBoleta) {
+
         this.codigo = codigo;
         this.fechaPresentacion = fechaPresentacion;
         this.horaInicio = horaInicio;
         this.precioBoleta = precioBoleta;
-        this.listEmpresaFunciones = new ArrayList<>();
+        this.listFuncionBoletas= new ArrayList<>();
+
     }
 
     public int getCodigo() {
@@ -54,22 +65,25 @@ public class Funcion {
         this.precioBoleta = precioBoleta;
     }
 
-    public List<Empresa> getListEmpresaFunciones() {
-        return listEmpresaFunciones;
+    public List<Boleta> getListFuncionBoletas() {
+        return listFuncionBoletas;
     }
 
-    public void setListEmpresaFunciones(List<Empresa> listEmpresaFunciones) {
-        this.listEmpresaFunciones = listEmpresaFunciones;
+    public void setListFuncionBoletas(List<Boleta> listFuncionBoletas) {
+        this.listFuncionBoletas = listFuncionBoletas;
     }
 
     @Override
     public String toString() {
         return "Funcion{" +
-                "codigo=" + codigo +
-                ", fechaPresentacion='" + fechaPresentacion + '\'' +
-                ", horaInicio='" + horaInicio + '\'' +
-                ", precioBoleta=" + precioBoleta +
-                ", listEmpresaFunciones=" + listEmpresaFunciones +
+                "codigo=" + codigo + "\n" +
+                ", fechaPresentacion='" + fechaPresentacion + "\n" +
+                ", horaInicio='" + horaInicio + "\n" +
+                ", precioBoleta=" + precioBoleta + "\n" +
+                ", listFuncionBoletas=" + listFuncionBoletas + "\n" +
                 '}';
     }
 }
+
+
+

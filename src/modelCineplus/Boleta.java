@@ -10,8 +10,50 @@ public class Boleta {
 
     //Realciones de la clase Boleta
     private Asiento asiento;
-    private List<Venta> listVentaBoletas;
-    private List<Empresa> listEmpresaBoletas;
-    private Funcion funcion;
 
+    /**
+     * metodo constructor de la clase Boleta
+     * @param codigo de la boleta
+     * @param valor de la boleta
+     * @param asiento de la boleta
+     */
+
+    public Boleta(int codigo, double valor, Asiento asiento) {
+        this.codigo = codigo;
+        this.valor = valor;
+        this.asiento = asiento;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public double getValor() {
+        return valor;
+    }
+
+    public void setValor(double valor) {
+        this.valor = valor;
+    }
+
+    public Asiento getAsiento() {
+        return asiento;
+    }
+
+    public void setAsiento(Asiento asiento) {
+        this.asiento = asiento;
+    }
+
+    @Override
+    public String toString() {
+        return "Boleta{" +
+                "codigo=" + codigo + "\n" +
+                ", valor=" + valor + "\n" +
+                ", asiento=" + asiento + "\n" +
+                '}';
+    }
 }

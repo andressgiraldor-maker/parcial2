@@ -12,9 +12,8 @@ public class Sala {
     private TipoSala tipoSala;
 
     //Relaciones de la clase Sala
-    private Empresa empresa;
     private List<Asiento> listSalaAsientos;
-    private List<Funcion> listSalaFuniones;
+    private List<Funcion> listSalaFunciones;
 
     public Sala(int codigo, String nombre, int capacidadMaxima, TipoSala tipoSala) {
         this.codigo = codigo;
@@ -23,7 +22,7 @@ public class Sala {
         this.tipoSala = tipoSala;
 
         this.listSalaAsientos = new ArrayList<>();
-        this.listSalaFuniones = new ArrayList<>();
+        this.listSalaFunciones = new ArrayList<>();
     }
 
     public TipoSala getTipoSala() {
@@ -58,13 +57,6 @@ public class Sala {
         this.capacidadMaxima = capacidadMaxima;
     }
 
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
 
     public List<Asiento> getListSalaAsientos() {
         return listSalaAsientos;
@@ -75,11 +67,11 @@ public class Sala {
     }
 
     public List<Funcion> getListSalaFuniones() {
-        return listSalaFuniones;
+        return listSalaFunciones;
     }
 
     public void setListSalaFuniones(List<Funcion> listSalaFuniones) {
-        this.listSalaFuniones = listSalaFuniones;
+        this.listSalaFunciones = listSalaFuniones;
     }
 
     @Override
@@ -88,9 +80,8 @@ public class Sala {
                 "codigo=" + codigo +
                 ", nombre='" + nombre + '\'' +
                 ", capacidadMaxima=" + capacidadMaxima +
-                ", empresa=" + empresa +
                 ", listSalaAsientos=" + listSalaAsientos +
-                ", listSalaFuniones=" + listSalaFuniones +
+                ", listSalaFuniones=" + listSalaFunciones +
                 '}';
     }
 }
