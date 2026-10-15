@@ -252,16 +252,37 @@ public class Empresa {
      * @param fechaRealizacion de la venta
      * @return
      */
-    public boolean realizarVenta(int codigo, String fechaRealizacion){
+    /**
+     * metodo para realizar una venta
+     * @param codigo de la venta
+     * @param fechaRealizacion de la venta
+     * @param codigoFuncion en la venta
+     * @param codigoBoleta en la venta
+     * @param asiento de la venta
+     * @return
+     */
+    public boolean realizarVenta(int codigo, String fechaRealizacion,
+                                 int codigoFuncion, int codigoBoleta, Asiento asiento) {
         boolean creada = false;
         Venta venta = buscarVenta(codigo);
-        if(venta==null){
+        Funcion funcion = buscarFuncionCinematografica(codigoFuncion);
+
+        if (venta == null && funcion != null
+                && funcion.consultarEstado(asiento) == EstadoAsiento.DISPONIBLE) {
+
             Venta venta1 = new Venta(codigo, fechaRealizacion);
+            venta1.agregarBoleta(codigoBoleta, funcion.getPrecioBase(), asiento);
+
+            Boleta boleta = venta1.buscarBoleta(codigoBoleta);
+            funcion.getListFuncionBoletas().add(boleta);
+
             listEmpresaVentas.add(venta1);
             creada = true;
         }
         return creada;
     }
+
+
 
     /**
      * metodo para calcular los ingresos por funcion
@@ -269,7 +290,7 @@ public class Empresa {
      * @return
      */
     public double calcularIngresos(int codigo){
-        double ingreso = -1;
+        double ingreso = 0;
         Funcion funcion = buscarFuncionCinematografica(codigo);
         if(funcion != null){
             ingreso = funcion.calcularIngresos();
@@ -283,7 +304,7 @@ public class Empresa {
      * @return
      */
     public double calcularTotalVenta(int codigo){
-        double total =-1;
+        double total =0;
         Venta venta = buscarVenta(codigo);
         if(venta != null){
             total = venta.calcularPrecioVenta();
@@ -301,6 +322,8 @@ public class Empresa {
         }
         return info;
    }
+
+
 
     public String getNombre() {
         return nombre;
@@ -379,4 +402,5 @@ public class Empresa {
                 ", listEmpresaVentas=" + listEmpresaVentas + "\n" +
                 '}';
     }
+
 }

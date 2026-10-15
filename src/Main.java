@@ -10,7 +10,9 @@ public class Main {
 
         int opcion= 0;
 
-        while(opcion!=16){
+
+
+        while(opcion!=18){
 
             opcion= Integer.parseInt(JOptionPane.showInputDialog(null, """
                     Ingrese una opción
@@ -26,11 +28,13 @@ public class Main {
                     9. Agregar una función cinematografica
                     10. Buscar una función cinematografica
                     11. Realizar una venta de boletas
-                    12. Calcular el valor total de una venta
-                    13.Consultar las peliulas disponibes
-                    14.Consultar ingresos por función
-                    15. Mostrar la información de Cineplus
-                    16. Salir del programa
+                    12. Buscar una venta
+                    13. Adquirir una boleta
+                    14. Calcular el valor total de una venta
+                    15.Consultar las peliulas disponibes
+                    16.Consultar ingresos por función
+                    17. Mostrar la información de Cineplus
+                    18. Salir del programa
                     """));
 
             if(opcion==1) {
@@ -69,7 +73,7 @@ public class Main {
                 int documento= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el documento "));
                 Operario operario= empresaCinePlus.buscarOperarioEnCinePlus(documento);
 
-                if(operario!=null){
+                 if(operario!=null){
                     JOptionPane.showMessageDialog(null, "Operario encontrado" + operario.toString());
                 } else{
                     JOptionPane.showMessageDialog(null, "El operario no existe");
@@ -167,21 +171,88 @@ public class Main {
                 } else{
                     JOptionPane.showMessageDialog(null, "La función no existe");
                 }
-            }else if(opcion == 11){
+            } else if (opcion == 13) {
+                int codigoVenta = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la venta"));
+                Venta ventaBoleta = empresaCinePlus.buscarVenta(codigoVenta);
+
+                if (ventaBoleta != null) {
+                    int codigoBoleta = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la boleta"));
+                    double valor = Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el valor de la boleta"));
+                    int fila = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la fila del asiento"));
+                    int columna = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la columna del asiento"));
+
+                    Asiento asiento = new Asiento(fila, columna);
+
+                    if (ventaBoleta.agregarBoleta(codigoBoleta, valor, asiento)) {
+                        JOptionPane.showMessageDialog(null, "Boleta agregada a la venta");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "La boleta ya existe en esa venta");
+                    }
+                }
+
+
+
+
+            } else if(opcion == 11){
+                int codigo = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la venta"));
+                String fechaRealizacion = JOptionPane.showInputDialog(null, "Ingrese la fecha de realizacion");
+                int codigoFuncion = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la funcion"));
+                int codigoBoleta = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la boleta"));
+                int fila = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la fila del asiento"));
+                int columna = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese la columna del asiento"));
+
+                Asiento asiento = new Asiento(fila, columna);
+
+                if(empresaCinePlus.realizarVenta(codigo, fechaRealizacion, codigoFuncion, codigoBoleta, asiento)){
+                    JOptionPane.showMessageDialog(null, "Venta realizada");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Venta rechazada (asiento ocupado, funcion inexistente o venta repetida)");
+                }
+
+
+
 
             }else if(opcion == 12){
+                int codigo= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la venta "));
+                Venta venta= empresaCinePlus.buscarVenta(codigo);
 
-            }else if(opcion == 13){
+                if(venta!=null){
+                    JOptionPane.showMessageDialog(null, "Venta encontrada" + venta.toString());
+                } else{
+                    JOptionPane.showMessageDialog(null, "La venta no se pudo realizar");
+                }
 
-            }else if (opcion == 14){
+            }else if(opcion == 14){
+                int codigo= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el codigo de la venta"));
+                Venta venta = empresaCinePlus.buscarVenta(codigo);
+                if(venta != null) {
+                    double total= empresaCinePlus.calcularTotalVenta(codigo);
+                    JOptionPane.showMessageDialog(null, "El total de la venta fue:" + total);
+                } else{
+                    JOptionPane.showMessageDialog(null, "La venta no existe");
+                }
 
             }else if (opcion == 15){
+                JOptionPane.showMessageDialog(null, "Las peliculas disponibles son:" + empresaCinePlus.consultarPeliculas());
+
+
 
             }else if (opcion == 16){
+                int codigo= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo de la función"));
+                Funcion funcion= empresaCinePlus.buscarFuncionCinematografica(codigo);
 
+                if(funcion != null){
+                    JOptionPane.showMessageDialog(null, "El ingreso de la función fue:" + empresaCinePlus.calcularIngresos(codigo) );
+                } else{
+                    JOptionPane.showMessageDialog(null, "La función no existe");
+                }
 
             }else if (opcion == 17){
-                JOptionPane.showMessageDialog(null,"opcion invalida");
+                JOptionPane.showMessageDialog(null, empresaCinePlus.toString());
+
+
+            }else if (opcion == 18){
+                JOptionPane.showMessageDialog(null,"Saliendo de CinePlus, gracias por venir");
                 break;
             }
 

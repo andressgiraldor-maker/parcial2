@@ -65,6 +65,22 @@ public class Funcion {
         return total;
     }
 
+    /**
+     * metodo para consultar el estado de un asiento
+     * @param asiento asiento
+     * @return
+     */
+
+    public EstadoAsiento consultarEstado(Asiento asiento) {
+        EstadoAsiento estado = EstadoAsiento.DISPONIBLE;
+        for (Boleta bolet : listFuncionBoletas) {
+            if (bolet.getAsiento().equals(asiento)) {
+                estado = EstadoAsiento.OCUPADO;
+            }
+        }
+        return estado;
+    }
+
 
     public int getCodigo() {
         return codigo;
