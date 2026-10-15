@@ -10,7 +10,7 @@ public class Main {
 
         int opcion= 0;
 
-        while(opcion!=15){
+        while(opcion!=16){
 
             opcion= Integer.parseInt(JOptionPane.showInputDialog(null, """
                     Ingrese una opción
@@ -29,8 +29,8 @@ public class Main {
                     12. Calcular el valor total de una venta
                     13.Consultar las peliulas disponibes
                     14.Consultar ingresos por función
-                    14. Mostrar la información de Cineplus
-                    15. Salir del programa
+                    15. Mostrar la información de Cineplus
+                    16. Salir del programa
                     """));
 
             if(opcion==1) {
@@ -167,6 +167,22 @@ public class Main {
                 } else{
                     JOptionPane.showMessageDialog(null, "La función no existe");
                 }
+            }else if(opcion == 11){
+
+            }else if(opcion == 12){
+
+            }else if(opcion == 13){
+
+            }else if (opcion == 14){
+
+            }else if (opcion == 15){
+
+            }else if (opcion == 16){
+
+
+            }else if (opcion == 17){
+                JOptionPane.showMessageDialog(null,"opcion invalida");
+                break;
             }
 
 

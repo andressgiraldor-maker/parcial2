@@ -80,15 +80,6 @@ public class Empresa {
 
     }
 
-    /**
-     * metodo para eliminar un cliente de CinePlus
-     * @param documento del cliente
-     */
-
-    public void eliminarClienteDeCinePlus(int documento){
-        Cliente cliente= buscarClienteEnCinePlus(documento);
-        listEmpresaPersonas.remove(cliente);
-    }
 
     /**
      * metodo para agregar un operario a la empresa CinePlus
@@ -105,12 +96,10 @@ public class Empresa {
     public boolean agregarOperarioACinePlus(int documento, String nombre, String correo, int telefono,int codigoEmpleado, double fechaContratacion, double salarioBasico){
         boolean existe= false;
         Operario operario= buscarOperarioEnCinePlus(documento);
-
         if(operario==null){
             Persona operad= new Operario(documento, nombre, correo, telefono, codigoEmpleado, fechaContratacion, salarioBasico);
             listEmpresaPersonas.add(operad);
             existe= true;
-
         }
         return existe;
 
@@ -121,34 +110,17 @@ public class Empresa {
      * @param documento del operario
      * @return
      */
-
-
     public Operario buscarOperarioEnCinePlus(int documento){
         Operario encontrado= null;
 
         for(int i=0; i<listEmpresaPersonas.size(); i++){
-
             Persona operario= listEmpresaPersonas.get(i);
-
             if(operario.getDocumento()== documento){
-
                 encontrado= (Operario) operario;
             }
         }
         return encontrado;
-
     }
-
-    /**
-     * metodo para eliminar un operario de CinePus
-     * @param documento del operario
-     */
-
-    public void eliminarOperarioDeCinePlus(int documento){
-        Operario operario= buscarOperarioEnCinePlus(documento);
-        listEmpresaPersonas.remove(operario);
-    }
-
     /**
      * metodo para agregar una pelicula a CinePlus
      * @param codigo de la pelicula
@@ -162,16 +134,12 @@ public class Empresa {
     public boolean agregarPelicula(int codigo, String titulo, double duracionMinutos, int clasificacionEdad, GeneroPelicula generoPelicula){
         boolean existe= false;
         Pelicula pelicula= buscarPelicula(codigo);
-
         if(pelicula==null){
-
             Pelicula pelic= new Pelicula(codigo, titulo, duracionMinutos,clasificacionEdad, generoPelicula);
             listEmpresaPeliculas.add(pelic);
             existe= true;
-
         }
         return existe;
-
     }
 
     /**
@@ -179,17 +147,14 @@ public class Empresa {
      * @param codigo de la pelicula
      * @return
      */
-
     public Pelicula buscarPelicula(int codigo){
         Pelicula encontrada= null;
 
         for(int i=0; i<listEmpresaPeliculas.size(); i++){
             Pelicula pelicula= listEmpresaPeliculas.get(i);
-
             if(pelicula.getCodigo()== codigo){
                 encontrada= pelicula;
             }
-
         }
         return encontrada;
     }
@@ -202,19 +167,15 @@ public class Empresa {
      * @param tipoSala de la sala
      * @return
      */
-
     public boolean agregarSalaACinePlus(int codigo, String nombre, int capacidadmaxima, TipoSala tipoSala){
         boolean pertenece= false;
         Sala sala= buscarSalaEnCinePlus(codigo);
-
         if(sala==null){
             Sala salat= new Sala(codigo, nombre, capacidadmaxima, tipoSala);
             listEmpresaSalas.add(salat);
             pertenece= true;
         }
         return pertenece;
-
-
     }
 
     /**
@@ -222,13 +183,11 @@ public class Empresa {
      * @param codigo de la sala
      * @return
      */
-
     public Sala buscarSalaEnCinePlus(int codigo){
         Sala encontrada= null;
 
         for(int i=0; i<listEmpresaSalas.size(); i++){
             Sala sala= listEmpresaSalas.get(i);
-
             if(sala.getCodigo()== codigo){
                 encontrada= sala;
             }
@@ -244,18 +203,15 @@ public class Empresa {
      * @param preioBoleta de la funcion
      * @return
      */
-
     public boolean agregarFuncionCinematografica(int codigo, String fechaPresentacion, String horaInicio, double preioBoleta){
         boolean pertenece= false;
         Funcion funcion= buscarFuncionCinematografica( codigo);
-
         if(funcion==null){
             Funcion funciont= new Funcion(codigo, fechaPresentacion, horaInicio, preioBoleta);
             listEmpresaFunciones.add(funciont);
             pertenece= true;
         }
         return  pertenece;
-
     }
 
     /**
@@ -263,19 +219,88 @@ public class Empresa {
      * @param codigo de la función
      * @return
      */
-
     public Funcion buscarFuncionCinematografica(int codigo){
         Funcion encontrada= null;
-
         for(int i=0; i<listEmpresaFunciones.size(); i++){
             Funcion funcion= listEmpresaFunciones.get(i);
-
             if(funcion.getCodigo()== codigo){
                 encontrada= funcion;
             }
         }
         return encontrada;
     }
+
+    /**
+     * metodo para buscar una venta
+     * @param codigo de la venta
+     * @return
+     */
+    public Venta buscarVenta(int codigo){
+        Venta encontrada = null;
+        for(int i = 0; i< listEmpresaVentas.size(); i++){
+            Venta venta = listEmpresaVentas.get(i);
+            if(venta.getCodigo()== codigo){
+                encontrada = venta;
+            }
+        }
+        return encontrada;
+    }
+
+    /**
+     * metodo para realizar un venta
+     * @param codigo de la venta
+     * @param fechaRealizacion de la venta
+     * @return
+     */
+    public boolean realizarVenta(int codigo, String fechaRealizacion){
+        boolean creada = false;
+        Venta venta = buscarVenta(codigo);
+        if(venta==null){
+            Venta venta1 = new Venta(codigo, fechaRealizacion);
+            listEmpresaVentas.add(venta1);
+            creada = true;
+        }
+        return creada;
+    }
+
+    /**
+     * metodo para calcular los ingresos por funcion
+     * @param codigo de la funcion
+     * @return
+     */
+    public double calcularIngresos(int codigo){
+        double ingreso = -1;
+        Funcion funcion = buscarFuncionCinematografica(codigo);
+        if(funcion != null){
+            ingreso = funcion.calcularIngresos();
+        }
+        return ingreso;
+    }
+
+    /**
+     * metodo para calcular el total de una venta
+     * @param codigo de la venta
+     * @return
+     */
+    public double calcularTotalVenta(int codigo){
+        double total =-1;
+        Venta venta = buscarVenta(codigo);
+        if(venta != null){
+            total = venta.calcularPrecioVenta();
+        }
+        return total;
+    }
+    /**
+     * metodo para consultar las peliculas disponibles
+     * @return
+     */
+   public String consultarPeliculas(){
+        String info= " ";
+        for(Pelicula pelicula : listEmpresaPeliculas){
+            info += pelicula.getCodigo() + " - " + pelicula.getTitulo();
+        }
+        return info;
+   }
 
     public String getNombre() {
         return nombre;

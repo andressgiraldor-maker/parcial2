@@ -9,10 +9,12 @@ public class Funcion {
     public int codigo;
     public String fechaPresentacion;
     public String horaInicio;
-    public Double precioBoleta;
+    public Double precioBase;
 
     //Relaciones de la clase Funcion
     private List<Boleta> listFuncionBoletas;
+    private Pelicula pelicula;
+    private Sala sala;
 
 
     /**
@@ -20,18 +22,49 @@ public class Funcion {
      * @param codigo de la funcion
      * @param fechaPresentacion de la funcion
      * @param horaInicio de la funcion
-     * @param precioBoleta de la funcion
+     * @param precioBase de la funcion
      */
 
-    public Funcion(int codigo, String fechaPresentacion, String horaInicio, Double precioBoleta) {
+    public Funcion(int codigo, String fechaPresentacion, String horaInicio, Double precioBase) {
 
         this.codigo = codigo;
         this.fechaPresentacion = fechaPresentacion;
         this.horaInicio = horaInicio;
-        this.precioBoleta = precioBoleta;
+        this.precioBase = precioBase;
         this.listFuncionBoletas= new ArrayList<>();
 
     }
+
+    /**
+     * metodo para calcular el precio de una boleta
+     * @param cliente quien compra
+     * @return
+     */
+    public double calcularPrecioBoleta(Cliente cliente){
+        double recargo = 0;
+        TipoSala tipo = sala.getTipoSala();
+        if(tipo == TipoSala.VIP){
+            recargo = 0.30;
+        }else if(tipo == TipoSala.TRES_D){
+            recargo = 0.20;
+        }
+        double valor = precioBase * (1 + recargo);
+        valor = valor * (1- cliente.getProcentajeDescuento() / 100);
+        return valor;
+    }
+
+    /**
+     * metodo para calcular ingresos por funcion
+     * @return
+     */
+    public double calcularIngresos(){
+        double total= 0;
+        for(Boleta boleta1 : listFuncionBoletas){
+            total += boleta1.getValor();
+        }
+        return total;
+    }
+
 
     public int getCodigo() {
         return codigo;
@@ -57,12 +90,12 @@ public class Funcion {
         this.horaInicio = horaInicio;
     }
 
-    public Double getPrecioBoleta() {
-        return precioBoleta;
+    public Double getPrecioBase() {
+        return precioBase;
     }
 
-    public void setPrecioBoleta(Double precioBoleta) {
-        this.precioBoleta = precioBoleta;
+    public void setPrecioBase(Double precioBase) {
+        this.precioBase = precioBase;
     }
 
     public List<Boleta> getListFuncionBoletas() {
@@ -79,7 +112,7 @@ public class Funcion {
                 "codigo=" + codigo + "\n" +
                 ", fechaPresentacion='" + fechaPresentacion + "\n" +
                 ", horaInicio='" + horaInicio + "\n" +
-                ", precioBoleta=" + precioBoleta + "\n" +
+                ", precioBase=" + precioBase + "\n" +
                 ", listFuncionBoletas=" + listFuncionBoletas + "\n" +
                 '}';
     }

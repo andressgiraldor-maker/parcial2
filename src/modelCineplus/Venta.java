@@ -22,6 +22,18 @@ public class Venta {
         this.listVentaBoletas = new ArrayList<>();
     }
 
+    /**
+     * metodo para calcula el valor total de una venta
+     * @return
+     */
+    public double calcularPrecioVenta(){
+        double total = 0;
+        for(Boleta boleta1 : listVentaBoletas){
+            total += boleta1.getValor();
+        }
+        return total;
+    }
+
     public int getCodigo() {
         return codigo;
     }
