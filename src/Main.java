@@ -26,15 +26,15 @@ public class Main {
                     7. Agregar una sala
                     8. Buscar una sala
                     9. Agregar una función cinematografica
-                    10. Buscar una función cinematografica
-                    11. Realizar una venta de boletas
-                    12. Buscar una venta
-                    13. Adquirir una boleta
-                    14. Calcular el valor total de una venta
+                    10.Buscar una función cinematografica
+                    11.Realizar una venta de boletas
+                    12.Buscar una venta
+                    13.Adquirir una boleta
+                    14.Calcular el valor total de una venta
                     15.Consultar las peliulas disponibes
                     16.Consultar ingresos por función
-                    17. Mostrar la información de Cineplus
-                    18. Salir del programa
+                    17.Mostrar la información de Cineplus
+                    18.Salir del programa
                     """));
 
             if(opcion==1) {
@@ -157,7 +157,7 @@ public class Main {
                 int codigo= Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el codigo"));
                 String fechaPresentacion= JOptionPane.showInputDialog(null, "Ingrese la fecha de presentación");
                 String horaInicio= JOptionPane.showInputDialog(null, "Ingrese la hora de inicio");
-                double precioBoleta= Double.parseDouble(JOptionPane.showInputDialog(null, "Inrese el precio de la boleta"));
+                double precioBoleta= Double.parseDouble(JOptionPane.showInputDialog(null, "Ingrese el precio de la boleta"));
 
                 empresaCinePlus.agregarFuncionCinematografica(codigo, fechaPresentacion, horaInicio, precioBoleta);
                 JOptionPane.showMessageDialog(null, "La función cinmatografica fue agrega exitosamente");
